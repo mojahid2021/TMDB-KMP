@@ -48,40 +48,6 @@ fun App() {
 }
 
 @Composable
-fun HomeScreen() {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text("Home Screen", style = MaterialTheme.typography.headlineMedium)
-    }
-}
-
-@Composable
-fun SearchScreen() {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text("Search Screen", style = MaterialTheme.typography.headlineMedium)
-    }
-}
-
-@Composable
-fun ProfileScreen() {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text("Profile Screen", style = MaterialTheme.typography.headlineMedium)
-    }
-}
-
-
-@Composable
 fun ModernBottomNavBar(selected: Screen, onSelect: (Screen) -> Unit) {
     Surface(
         tonalElevation = 8.dp,
