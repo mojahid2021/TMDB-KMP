@@ -56,25 +56,73 @@ This is a Kotlin Multiplatform project targeting Android, iOS, Web, and Desktop.
 2. Select **Any iOS Device (arm64)** as the target.
 3. Go to **Product > Archive** to create an IPA for App Store/TestFlight.
 
-### Desktop (Compose Desktop)
-- **Windows:**
-  - `.exe` and `.msi` installers will be in `composeApp/build/compose/binaries/main/msi/` and `composeApp/build/compose/binaries/main/exe/`.
-- **Linux:**
-  - `.deb` and `.rpm` packages will be in `composeApp/build/compose/binaries/main/deb/` and `composeApp/build/compose/binaries/main/rpm/`.
-- **macOS:**
-  - `.dmg` installer will be in `composeApp/build/compose/binaries/main/dmg/`.
-- To build all, run:
-  ```sh
-  ./gradlew :composeApp:package
-  ```
+### Desktop (Compose Desktop) Production Build
+To build production-ready installers/packages for Desktop:
+
+- **On Linux:**
+  1. In the terminal, run:
+     ```sh
+     ./gradlew :composeApp:packageDistributionForCurrentOS
+     ```
+  2. The output packages will be located in:
+     - `.deb`: `composeApp/build/compose/binaries/main/deb/`
+     - `.rpm`: `composeApp/build/compose/binaries/main/rpm/`
+  > **Note:** You can only build Linux packages (.deb, .rpm) on Linux.
+
+- **On Windows:**
+  1. Open a terminal (e.g., Command Prompt or PowerShell) on a Windows machine.
+  2. Run:
+     ```sh
+     .\gradlew :composeApp:packageDistributionForCurrentOS
+     ```
+  3. The output packages will be located in:
+     - `.exe`: `composeApp/build/compose/binaries/main/exe/`
+     - `.msi`: `composeApp/build/compose/binaries/main/msi/`
+  > **Note:** You can only build Windows installers (.exe, .msi) on Windows.
+
+- **On macOS:**
+  1. Open a terminal on a Mac.
+  2. Run:
+     ```sh
+     ./gradlew :composeApp:packageDistributionForCurrentOS
+     ```
+  3. The output package will be located in:
+     - `.dmg`: `composeApp/build/compose/binaries/main/dmg/`
+  > **Note:** You can only build macOS installers (.dmg) on macOS.
+
+If you want to distribute for all platforms, you must run the build command on each target OS or use a CI/CD service that provides those environments.
+
+### iOS (IPA) Production Build
+To create a production-ready IPA for iOS:
+
+1. Open `iosApp/iosApp.xcodeproj` in Xcode.
+2. Select **Any iOS Device (arm64)** as the target.
+3. Go to **Product > Archive** to create an archive.
+4. Use the Xcode Organizer to export the IPA for App Store, TestFlight, or Ad Hoc distribution.
+
+The exported IPA will be available in the location you choose during the export process.
 
 ### Web (Wasm) Production Build
 1. In the terminal, run:
    ```sh
    ./gradlew :composeApp:wasmJsBrowserProductionWebpack
    ```
-2. The production-ready web files will be in `composeApp/build/dist/wasmJs/productionExecutable/`.
-3. Deploy the contents of this folder to your web server.
+   
+   The production build output will be located in:
+   
+   - `composeApp/build/dist/productionExecutable/wasmJs/` (or similar, depending on your configuration)
+   
+   You can serve the production build using a static file server, for example:
+   
+   ```sh
+   npx serve composeApp/build/dist/productionExecutable/wasmJs/
+   ```
+   
+   Or with Python (if installed):
+   
+   ```sh
+   python3 -m http.server --directory composeApp/build/dist/productionExecutable/wasmJs/
+   ```
 
 ## Resources
 - [Kotlin Multiplatform Documentation](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)
