@@ -70,6 +70,8 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation("br.com.devsrsouza.compose.icons:font-awesome:1.1.1")
+            implementation("org.jetbrains.compose.material:material-icons-extended:1.7.3")
+
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
