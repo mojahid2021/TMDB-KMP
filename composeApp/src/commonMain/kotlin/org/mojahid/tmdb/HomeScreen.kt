@@ -15,6 +15,7 @@ import org.mojahid.tmdb.Theme.Color
 fun HomeScreen() {
     Column(
         modifier = Modifier
+            .background(MaterialTheme.colorScheme.background)
             .fillMaxSize()
             .background(Color.Black),
         horizontalAlignment = Alignment.CenterHorizontally,

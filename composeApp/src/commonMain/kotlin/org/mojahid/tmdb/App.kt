@@ -37,35 +37,38 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.mojahid.tmdb.Theme.MyAppTheme
 import tmdb.composeapp.generated.resources.Res
 import tmdb.composeapp.generated.resources.compose_multiplatform
 
 @Composable
 @Preview
 fun App() {
-    var selectedItemId by remember { mutableStateOf("home") }
-    val navItems = listOf(
-        NavItem("home", Icons.Rounded.Home, "Home"),
-        NavItem("search", Icons.Rounded.Search, "Search"),
-        NavItem("profile", Icons.Rounded.Person, "Profile")
-    )
-
-    Column(modifier = Modifier.fillMaxSize()) {
-        // Content area shows the selected page
-        Box(modifier = Modifier.weight(1f).fillMaxWidth()) {
-            when (selectedItemId) {
-                "home" -> HomeScreen()
-                "search" -> SearchScreen()
-                "profile" -> ProfileScreen()
-                else -> HomeScreen()
-            }
-        }
-        // Bottom navigation bar
-        CustomNavBar(
-            items = navItems,
-            selectedItemId = selectedItemId,
-            onItemSelected = { selectedItemId = it }
+    MyAppTheme {
+        var selectedItemId by remember { mutableStateOf("home") }
+        val navItems = listOf(
+            NavItem("home", Icons.Rounded.Home, "Home"),
+            NavItem("search", Icons.Rounded.Search, "Search"),
+            NavItem("profile", Icons.Rounded.Person, "Profile")
         )
+
+        Column(modifier = Modifier.fillMaxSize()) {
+            // Content area shows the selected page
+            Box(modifier = Modifier.weight(1f).fillMaxWidth()) {
+                when (selectedItemId) {
+                    "home" -> HomeScreen()
+                    "search" -> SearchScreen()
+                    "profile" -> ProfileScreen()
+                    else -> HomeScreen()
+                }
+            }
+            // Bottom navigation bar
+            CustomNavBar(
+                items = navItems,
+                selectedItemId = selectedItemId,
+                onItemSelected = { selectedItemId = it }
+            )
+        }
     }
 }
 

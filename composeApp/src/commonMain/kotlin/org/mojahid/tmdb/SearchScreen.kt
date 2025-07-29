@@ -1,5 +1,6 @@
 package org.mojahid.tmdb
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,10 +14,15 @@ import androidx.compose.ui.Modifier
 @Composable
 fun SearchScreen() {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .background(MaterialTheme.colorScheme.background)
+            .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text("Search Screen", style = androidx.compose.material3.MaterialTheme.typography.headlineMedium)
+        Text(
+            "Search Screen",
+            style = androidx.compose.material3.MaterialTheme.typography.headlineMedium
+        )
     }
 }
