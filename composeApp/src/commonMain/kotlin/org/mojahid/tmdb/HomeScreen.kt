@@ -1,25 +1,25 @@
 package org.mojahid.tmdb
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import org.mojahid.tmdb.Theme.Color
 
 @Composable
-fun HomeScreen(onStatusBarColorChange: (bg: androidx.compose.ui.graphics.Color, content: androidx.compose.ui.graphics.Color) -> Unit) {
-    LaunchedEffect(onStatusBarColorChange) {
-        onStatusBarColorChange(org.mojahid.tmdb.Theme.Color.White, org.mojahid.tmdb.Theme.Color.Black)
-    }
+fun HomeScreen() {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Black),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text("Home Screen", style = androidx.compose.material3.MaterialTheme.typography.headlineMedium)
+        Text("Home Screen", style = MaterialTheme.typography.headlineMedium, color = Color.White)
     }
 }

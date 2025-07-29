@@ -37,43 +37,27 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import tmdb.composeapp.generated.resources.Res
+import tmdb.composeapp.generated.resources.compose_multiplatform
 
 @Composable
 @Preview
 fun App() {
     var selectedItemId by remember { mutableStateOf("home") }
-    // Status bar color state
-    var statusBarBg by remember { mutableStateOf(Color.Black) }
-    var statusBarContent by remember { mutableStateOf(Color.White) }
-
     val navItems = listOf(
         NavItem("home", Icons.Rounded.Home, "Home"),
         NavItem("search", Icons.Rounded.Search, "Search"),
         NavItem("profile", Icons.Rounded.Person, "Profile")
-        // Custom status bar
     )
 
     Column(modifier = Modifier.fillMaxSize()) {
-        // No custom status bar Box, use only the system status bar
         // Content area shows the selected page
         Box(modifier = Modifier.weight(1f).fillMaxWidth()) {
             when (selectedItemId) {
-                "home" -> HomeScreen { bg, content ->
-                    statusBarBg = bg
-                    statusBarContent = content
-                }
-                "search" -> SearchScreen { bg, content ->
-                    statusBarBg = bg
-                    statusBarContent = content
-                }
-                "profile" -> ProfileScreen { bg, content ->
-                    statusBarBg = bg
-                    statusBarContent = content
-                }
-                else -> HomeScreen { bg, content ->
-                    statusBarBg = bg
-                    statusBarContent = content
-                }
+                "home" -> HomeScreen()
+                "search" -> SearchScreen()
+                "profile" -> ProfileScreen()
+                else -> HomeScreen()
             }
         }
         // Bottom navigation bar
@@ -113,12 +97,16 @@ fun CustomNavBar(
 
             Column(
                 modifier = Modifier
+                    .background(
+                        if (isSelected) Color.Accent.copy(alpha = 0.15f) else Color.Transparent,
+                        RoundedCornerShape(12.dp)
+                    )
                     .clickable(
                         interactionSource = remember { MutableInteractionSource() },
                         indication = null,
                         onClick = { onItemSelected(item.id) }
                     )
-                    .padding(vertical = 6.dp),
+                    .padding(vertical = 6.dp, horizontal = 16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Icon(

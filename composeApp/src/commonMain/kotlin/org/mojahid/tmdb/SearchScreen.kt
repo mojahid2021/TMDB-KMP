@@ -11,10 +11,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-fun SearchScreen(onStatusBarColorChange: (bg: androidx.compose.ui.graphics.Color, content: androidx.compose.ui.graphics.Color) -> Unit) {
-    LaunchedEffect(onStatusBarColorChange) {
-        onStatusBarColorChange(org.mojahid.tmdb.Theme.Color.Primary, org.mojahid.tmdb.Theme.Color.White)
-    }
+fun SearchScreen() {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
